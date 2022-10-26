@@ -1,18 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Typed from "react-typed";
 
 import AboutImg from "../public/assets/pics/about.jpg";
 
 function About() {
   return (
     <div id="about" className="w-full md:h-screen p-2 flex items-center">
-      <div className="max-w-[1240px] m-auto md:grid grid-cols-3 gap-8">
+      <section className="secHidden max-w-[1240px] m-auto md:grid grid-cols-3 gap-8">
         <div className="col-span-2">
           <p className="uppercase text-xl tracking-widest text-[#e92c2c]">
             About
           </p>
-          <h3 className="py-4">Who I Am</h3>
+          <h3 className="py-4">
+            <Typed
+              strings={[
+                "Who are we?",
+                "We're Red<span style='color:#e92c2c'>Motion</span>Media",
+              ]}
+              typeSpeed={40}
+              startDelay={500}
+              backSpeed={50}
+              backDelay={10000}
+              loop
+            />
+          </h3>
           <p className="py-2 ">&#8427; I am not a normal content creator</p>
           <p className="py-2 ">
             Hi, I&apos;m <span className="text-[#e92c2c]">Red</span>Ryder. My
@@ -47,7 +60,7 @@ function About() {
             height="800px"
           ></Image>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

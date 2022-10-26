@@ -4,6 +4,7 @@ import { FaGithub, FaInstagram, FaLinkedinIn, FaTiktok } from "react-icons/fa";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
+import Typed from "react-typed";
 
 import StartImg from "../public/assets/start.jpg";
 
@@ -54,12 +55,24 @@ const Main = () => {
               Let&apos;s inspire people
             </p>
             <h2 className="py-4 text-gray-100">
-              This&apos;s is Red
-              <span className="text-[#e92c2c]">Motion</span>Media
+              <Typed
+                strings={[
+                  "This is <span style='color:#e92c2c'>Art</span>",
+                  "This is Web<span style='color:#e92c2c'>design</span>",
+                  "This is <span style='color:#e92c2c'>Marketing</span>",
+                  "This is Red<span style='color:#e92c2c'>Motion</span>Media",
+                ]}
+                typeSpeed={40}
+                startDelay={500}
+                backSpeed={50}
+                backDelay={1000}
+                contentType="html"
+              />
             </h2>
+
             <p className="py-4 text-gray-200 max-w-[70%] m-auto">
-              Are you searching for a webdesigning or marketing companie. We are
-              the one to go with. We make marketing that actually works.
+              Are you searching for a webdesigning or marketing companies. We
+              are the one to go with. We make marketing that actually works.
             </p>
             <div className="flex items-center justify-between max-w-[330px] m-auto py-4">
               <a
