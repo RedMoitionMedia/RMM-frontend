@@ -1,13 +1,9 @@
-import Image from "next/image";
 import About from "../components/About";
 import Contact from "../components/Contact";
 import Main from "../components/Main";
-import Footer from "../components/Footer";
-import Presets from "../components/Presets";
 import Projects from "../components/Projects";
-import Skills from "../components/Skills";
-import Work from "../components/Work";
 import React, { useState, useEffect } from "react";
+import Services from "../components/Services";
 
 export default function Home() {
   useEffect(() => {
@@ -24,14 +20,15 @@ export default function Home() {
 
     const hiddenElement = document.querySelectorAll(".secHidden");
     hiddenElement.forEach((el) => observer.observe(el));
+
+    const hiddenElement2 = document.querySelectorAll(".secHidden2");
+    hiddenElement2.forEach((el) => observer.observe(el));
   });
   return (
     <div>
       <Main />
-      <Presets />
       <About />
-      <Work />
-      <Skills />
+      <Services />
       <Projects />
 
       <Contact />
