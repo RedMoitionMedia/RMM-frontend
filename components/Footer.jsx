@@ -171,7 +171,7 @@ function Footer() {
             </div>
           </div>
           <div className="ml-5 md:ml-0 p-5 text-xs">
-            <p>RedRyder</p>
+            <p>RedMotionMedia</p>
           </div>
         </div>
       </div>
