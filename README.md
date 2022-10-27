@@ -1,3 +1,7 @@
+## How does it look
+
+![image](https://user-images.githubusercontent.com/68692708/198314238-5f898850-9771-4784-b514-d2f19684abfd.png)
+
 ## Getting Started
 
 First, install all dependencies:
