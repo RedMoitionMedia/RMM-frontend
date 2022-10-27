@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import fiveseatsImg from "../public/assets/projects/fiveseats.jpg";
+import redryderImg from "../public/assets/projects/redryder.jpg";
 import ProjectItem from "./ProjectItem";
 
 const Projects = () => {
@@ -18,6 +19,12 @@ const Projects = () => {
             backgroundImg={fiveseatsImg}
             projectUrl="/fiveseats"
             tech="Angular JS"
+          />
+          <ProjectItem
+            title="RedRyder"
+            backgroundImg={redryderImg}
+            projectUrl="/redryder"
+            tech="Next JS"
           />
         </div>
       </div>
