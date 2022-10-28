@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { isExpired, decodeToken } from "react-jwt";
+
 
 function loginPage() {
     const [ profile, setProfile ] = useState();
@@ -19,8 +21,32 @@ function loginPage() {
         gapi.then((d)=> d.load("client:auth2",initClient));
     });
 
-    const onSuccess = (res) => {
-        setProfile(res.profileObj);
+    const onSuccess = async (res) => {
+        const token = res.tokenId;
+        const myDecodedToken = decodeToken(token);
+        const isMyTokenExpired = isExpired(token);
+        // //Logindata transfer to backend
+        // if(!isMyTokenExpired){
+        //     await fetch(
+        //         "https://www.redmotionmedia.at:5001/api/redmotionmedia/login/google",
+        //         {
+        //           method: "POST",
+        //           body: JSON.stringify(myDecodedToken),
+        //         }
+        //       )
+        //         .then((data) => {
+        //           setState("SUCCESS");
+      
+        //           console.log("Success:", data);
+        //         })
+        //         .catch((error) => {
+        //           setErrorMessage(error.response);
+        //           setState("ERROR");
+        //           console.error("Error:", error);
+        //         });
+        // }
+        console.table(myDecodedToken);
+        setProfile(myDecodedToken);
     };
 
     const onFailure = (err) => {
@@ -39,7 +65,7 @@ function loginPage() {
             <br />
             {profile!=null ? (
                 <div>
-                    <img src={profile.imageUrl} alt="user image" referrerpolicy="no-referrer"/>
+                    <img src={profile.picture} alt="user image" referrerpolicy="no-referrer"/>
                     <h3>User Logged in</h3>
                     <p>Name: {profile.name}</p>
                     <p>Email Address: {profile.email}</p>
