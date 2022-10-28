@@ -117,6 +117,11 @@ const Navbar = () => {
                   Contact
                 </li>
               </Link>
+              <Link href="/loginPage">
+                <li className="ml-10 text-sm uppercase hover:border-b">
+                  Login
+                </li>
+              </Link>
             </ul>
             <div onClick={handleNav} className="cursor-pointer md:hidden">
               <AiOutlineMenu size={25} />
