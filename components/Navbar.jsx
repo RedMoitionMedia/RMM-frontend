@@ -117,19 +117,19 @@ const Navbar = () => {
                   Contact
                 </li>
               </Link>
-              <Link href="/LoginPage">
+              {/* <Link href="/LoginPage">
                 <li
                   id="navLoginLink"
                   className="ml-10 text-sm uppercase hover:border-b"
                 >
                   Login
                 </li>
-              </Link>
+              </Link> */}
               <Link href="https://nextcloud.redryder.at">
                 <li
                   id="navCloudLink"
                   className="ml-10 text-sm uppercase hover:border-b"
-                  style={{ display: "none" }}
+                  style={{ display: "block" }}
                 >
                   Cloud
                 </li>
