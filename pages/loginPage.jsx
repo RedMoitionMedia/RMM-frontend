@@ -1,13 +1,9 @@
-/*App.js*/
-
-import React, { useState, useEffect } from "react";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
-import { isExpired, decodeToken } from "react-jwt";
+import React, { useState } from "react";
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import { FaGoogle } from "react-icons/fa";
 import Link from "next/link";
 
-function loginPage() {
+const LoginPage = () => {
   const { data: session, status } = useSession();
   const [authenticationState, setAuthenticationState] = useState("loading");
 
@@ -22,7 +18,7 @@ function loginPage() {
     return await response.json();
   }
 
-  if (status == "authenticated") {
+  if (session) {
     if (authenticationState == "loading") {
       let backendUser = getUserInfos(session.user);
 
@@ -127,5 +123,5 @@ function loginPage() {
       </div>
     );
   }
-}
-export default loginPage;
+};
+export default LoginPage;
