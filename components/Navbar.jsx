@@ -118,8 +118,20 @@ const Navbar = () => {
                 </li>
               </Link>
               <Link href="/loginPage">
-                <li className="ml-10 text-sm uppercase hover:border-b">
+                <li
+                  id="navLoginLink"
+                  className="ml-10 text-sm uppercase hover:border-b"
+                >
                   Login
+                </li>
+              </Link>
+              <Link href="https://nextcloud.redryder.at">
+                <li
+                  id="navCloudLink"
+                  className="ml-10 text-sm uppercase hover:border-b"
+                  style={{ display: "none" }}
+                >
+                  Cloud
                 </li>
               </Link>
             </ul>
