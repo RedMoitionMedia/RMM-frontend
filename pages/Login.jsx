@@ -3,7 +3,7 @@ import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import { FaGoogle } from "react-icons/fa";
 import Link from "next/link";
 
-const LoginPage = () => {
+const Login = () => {
   const { data: session, status } = useSession();
   const [authenticationState, setAuthenticationState] = useState("loading");
 
@@ -70,7 +70,7 @@ const LoginPage = () => {
                 alt="user image"
                 referrerpolicy="no-referrer"
               />
-              <h3>User Logged in</h3>
+              <h3>User is Logged in</h3>
               <p>Name: {session.user.name}</p>
               <p>Email Address: {session.user.email}</p>
               <br />
@@ -124,4 +124,4 @@ const LoginPage = () => {
     );
   }
 };
-export default LoginPage;
+export default Login;

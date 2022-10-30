@@ -117,7 +117,7 @@ const Navbar = () => {
                   Contact
                 </li>
               </Link>
-              <Link href="/LoginPage">
+              <Link href="/Login">
                 <li
                   id="navLoginLink"
                   className="ml-10 text-sm uppercase hover:border-b"
