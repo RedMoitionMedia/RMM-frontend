@@ -16,7 +16,6 @@ export default function Cloud() {
 
 export const getServerSideProps = async (context) => {
   const session = await getSession(context);
-  console.log(context);
   const cookies = new Cookies(context.req, context.res);
   const redirectionPath = "/Cloud";
   cookies.set("redirectionPath", redirectionPath, {

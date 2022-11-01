@@ -58,7 +58,6 @@ export default function Account() {
 
 export const getServerSideProps = async (context) => {
   const session = await getSession(context);
-  console.log(context);
   const cookies = new Cookies(context.req, context.res);
   const redirectionPath = "/Account";
   cookies.set("redirectionPath", redirectionPath, {
