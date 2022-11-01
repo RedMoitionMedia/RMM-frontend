@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import { FaGoogle } from "react-icons/fa";
+import Router from "next/router";
 import Link from "next/link";
+import Cookies from "cookies";
 
-const Login = () => {
+export default function Login({ redirectionPath }) {
   const { data: session, status } = useSession();
   const [authenticationState, setAuthenticationState] = useState("loading");
+  const [backendUser, setBackendUser] = useState([]);
 
-  async function getUserInfos(user) {
+  async function setBackendUserAndChangeAuthenticationState(user) {
     const response = await fetch(
       "https://redmotionmedia.redryder.at:5002/api/nextcloud/getUserInfos",
       {
@@ -15,25 +18,22 @@ const Login = () => {
         body: JSON.stringify(user),
       }
     );
-    return await response.json();
+    const backendUser = await response.json();
+    setBackendUser(backendUser);
+    if (backendUser) {
+      if (session.user.email == backendUser.email.value) {
+        setAuthenticationState("success");
+      } else {
+        setAuthenticationState("fail");
+      }
+    } else {
+      setAuthenticationState("fail");
+    }
   }
 
   if (session) {
+    setBackendUserAndChangeAuthenticationState(session.user);
     if (authenticationState == "loading") {
-      let backendUser = getUserInfos(session.user);
-
-      backendUser.then((data) => {
-        console.log(data);
-        if (data) {
-          if (session.user.email == data.email.value) {
-            setAuthenticationState("success");
-          } else {
-            setAuthenticationState("fail");
-          }
-        } else {
-          setAuthenticationState("fail");
-        }
-      });
       return (
         <div className="max-w-[1240px] mx-auto pt-[200px] h-full px-10 pb-96">
           <div className="h-full">
@@ -55,49 +55,7 @@ const Login = () => {
         </div>
       );
     } else {
-      document.getElementById("navLoginLink").innerHTML = "Account";
-      document.getElementById("navCloudLink").style.display = "block";
-
-      return (
-        <div className="max-w-[1240px] mx-auto pt-[200px] h-full px-10 pb-96">
-          <div className="h-full">
-            <h2>Account</h2>
-            <br />
-            <br />
-            <div>
-              <img
-                src={session.user.image}
-                alt="user image"
-                referrerpolicy="no-referrer"
-              />
-              <h3>User is Logged in</h3>
-              <p>Name: {session.user.name}</p>
-              <p>Email Address: {session.user.email}</p>
-              <br />
-              <br />
-              <div className="flex flex-col gap-5 w-[200px]">
-                <button
-                  className={
-                    "p-2 text-gray-100 text-base sm:px-10 sm:text-lg cursor-pointer hover:scale-105 ease-in duration-300"
-                  }
-                >
-                  <Link href="https://nextcloud.redryder.at">
-                    <p>Cloud</p>
-                  </Link>
-                </button>
-                <button
-                  className={
-                    "p-2 text-gray-100 text-base sm:px-10 sm:text-lg cursor-pointer hover:scale-105 ease-in duration-300 mt-44"
-                  }
-                  onClick={() => signOut()}
-                >
-                  Log out
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
+      Router.push(redirectionPath);
     }
   } else {
     return (
@@ -123,5 +81,16 @@ const Login = () => {
       </div>
     );
   }
+}
+
+export const getServerSideProps = async ({ params, query, req, res }) => {
+  const cookies = new Cookies(req, res);
+  let redirectionPath = "/";
+
+  if (cookies.get("redirectionPath")) {
+    redirectionPath = cookies.get("redirectionPath");
+  }
+  return {
+    props: { redirectionPath },
+  };
 };
-export default Login;
