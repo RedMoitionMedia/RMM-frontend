@@ -6,6 +6,14 @@ import Link from "next/link";
 import Cookies from "cookies";
 
 export default function Login({ state }) {
+  useEffect(() => {
+    if (state != "notSignedIn") {
+      setTimeout(() => {
+        signOut();
+      }, 500);
+    }
+  }, []);
+
   if (state == "notSignedIn") {
     return (
       <div className="max-w-[1240px] mx-auto pt-[200px] h-full px-10 pb-96">
@@ -30,11 +38,6 @@ export default function Login({ state }) {
       </div>
     );
   } else {
-    useEffect(() => {
-      setTimeout(() => {
-        signOut();
-      }, 500);
-    }, []);
     return (
       <div className="max-w-[1240px] mx-auto pt-[200px] h-full px-10 pb-96">
         <div className="h-full">
