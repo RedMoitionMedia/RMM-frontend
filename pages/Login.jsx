@@ -5,59 +5,8 @@ import Router from "next/router";
 import Link from "next/link";
 import Cookies from "cookies";
 
-export default function Login({ redirectionPath }) {
-  const { data: session, status } = useSession();
-  const [authenticationState, setAuthenticationState] = useState("loading");
-  const [backendUser, setBackendUser] = useState([]);
-
-  async function setBackendUserAndChangeAuthenticationState(user) {
-    const response = await fetch(
-      "https://redmotionmedia.redryder.at:5002/api/nextcloud/getUserInfos",
-      {
-        method: "POST",
-        body: JSON.stringify(user),
-      }
-    );
-    const backendUser = await response.json();
-    setBackendUser(backendUser);
-    if (backendUser) {
-      if (session.user.email == backendUser.email.value) {
-        setAuthenticationState("success");
-      } else {
-        setAuthenticationState("fail");
-      }
-    } else {
-      setAuthenticationState("fail");
-    }
-  }
-
-  if (session) {
-    setBackendUserAndChangeAuthenticationState(session.user);
-    if (authenticationState == "loading") {
-      return (
-        <div className="max-w-[1240px] mx-auto pt-[200px] h-full px-10 pb-96">
-          <div className="h-full">
-            <h2>Loading ...</h2>
-          </div>
-        </div>
-      );
-    }
-
-    if (authenticationState == "fail") {
-      setTimeout(() => {
-        signOut();
-      }, 1000);
-      return (
-        <div className="max-w-[1240px] mx-auto pt-[200px] h-full px-10 pb-96">
-          <div className="h-full">
-            <h2>User not allowed</h2>
-          </div>
-        </div>
-      );
-    } else {
-      Router.push(redirectionPath);
-    }
-  } else {
+export default function Login({ state }) {
+  if (state == "notSignedIn") {
     return (
       <div className="max-w-[1240px] mx-auto pt-[200px] h-full px-10 pb-96">
         <div className="h-full">
@@ -80,17 +29,52 @@ export default function Login({ redirectionPath }) {
         </div>
       </div>
     );
+  } else {
+    setTimeout(() => {
+      signOut();
+    }, 1000);
+    return (
+      <div className="max-w-[1240px] mx-auto pt-[200px] h-full px-10 pb-96">
+        <div className="h-full">
+          <h2>User not allowed</h2>
+        </div>
+      </div>
+    );
   }
 }
 
-export const getServerSideProps = async ({ params, query, req, res }) => {
-  const cookies = new Cookies(req, res);
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context);
+  let state = "notSignedIn";
+  if (!session) {
+    return {
+      props: { state },
+    };
+  }
+  const user = session.user;
+  const response = await fetch(
+    "https://redmotionmedia.redryder.at:5002/api/nextcloud/getUserInfos",
+    {
+      method: "POST",
+      body: JSON.stringify(user),
+    }
+  );
+  const backendUser = await response.json();
+  if (!backendUser) {
+    state = "notAllowed";
+    return {
+      props: { state },
+    };
+  }
+  const cookies = new Cookies(context.req, context.res);
   let redirectionPath = "/";
 
   if (cookies.get("redirectionPath")) {
     redirectionPath = cookies.get("redirectionPath");
   }
   return {
-    props: { redirectionPath },
+    redirect: {
+      destination: redirectionPath,
+    },
   };
 };

@@ -158,14 +158,14 @@ const Navbar = () => {
                   <Image
                     onClick={() => setNav(false)}
                     src={NavLogoImg}
-                    width="70"
+                    width="175"
                     height="70"
                     alt="/"
                   />
                 </Link>
                 <div
                   onClick={handleNav}
-                  className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer"
+                  className="rounded-full shadow-lg p-3 cursor-pointer"
                 >
                   <AiOutlineClose />
                 </div>
@@ -211,6 +211,16 @@ const Navbar = () => {
                 <Link href="/#contact">
                   <li onClick={() => setNav(false)} className="py-4 text-sm">
                     Contact
+                  </li>
+                </Link>
+                <Link href="/Account">
+                  <li onClick={() => setNav(false)} className="py-4 text-sm">
+                    Account
+                  </li>
+                </Link>
+                <Link href="/Cloud">
+                  <li onClick={() => setNav(false)} className="py-4 text-sm">
+                    Cloud
                   </li>
                 </Link>
               </ul>

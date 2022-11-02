@@ -65,7 +65,6 @@ function Footer() {
       "
       style={{
         boxShadow: "0px -20px 20px 5px rgba(1, 1, 1, 0.03)",
-        marginTop: `${windowHeight}px`,
       }}
     >
       <div className="max-w-[1240px] m-auto w-full">
