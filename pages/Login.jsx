@@ -30,9 +30,11 @@ export default function Login({ state }) {
       </div>
     );
   } else {
-    setTimeout(() => {
-      signOut();
-    }, 1000);
+    useEffect(() => {
+      setTimeout(() => {
+        signOut();
+      }, 500);
+    }, []);
     return (
       <div className="max-w-[1240px] mx-auto pt-[200px] h-full px-10 pb-96">
         <div className="h-full">
