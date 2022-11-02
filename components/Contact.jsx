@@ -86,16 +86,16 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="py-2">
-                  Marcel (<span className="text-[#e92c2c]">Red</span>Ryder)
+                  Red<span className="text-[#e92c2c]">Motion</span>Media
                 </h3>
-                <p>Content Creator</p>
+                <p>We work to inspire.</p>
                 <p className="py-4">
-                  I am available for freelance or project works. Contact me and
-                  let&apos;s talk.
+                  We are available for business support or project works.
+                  Contact us and let&apos;s talk.
                 </p>
               </div>
               <div>
-                <p className="uppercase pt-8">Connect With Me</p>
+                <p className="uppercase pt-8">Connect With Us</p>
                 <div className="flex items-center justify-between py-4">
                   <a
                     href="https://www.instagram.com/redryder.at/"

@@ -71,8 +71,8 @@ const Main = () => {
             </h2>
 
             <p className="py-4 text-gray-200 max-w-[70%] m-auto">
-              Are you searching for a webdesigning or marketing companies. We
-              are the one to go with. We make marketing that actually works.
+              Are you searching for a webdesigning or marketing company. We are
+              the one to go with. We make marketing look easy.
             </p>
             <div className="flex items-center justify-between max-w-[330px] m-auto py-4">
               <a
