@@ -6,7 +6,7 @@ import { SessionProvider } from "next-auth/react";
 
 function MyApp({ Component, pageProps, session }) {
   return (
-    <>
+    <div className="flex flex-col h-screen justify-between">
       <SessionProvider session={session}>
         <Head>
           <title>RedMotionMedia</title>
@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps, session }) {
 
         <Footer />
       </SessionProvider>
-    </>
+    </div>
   );
 }
 

@@ -16,7 +16,7 @@ export default function Login({ state }) {
 
   if (state == "notSignedIn") {
     return (
-      <div className="max-w-[1240px] mx-auto pt-[200px] h-full px-10 pb-96">
+      <div className="max-w-[1240px] pt-[200px] px-10 pb-20">
         <div className="h-full">
           <h2>Login</h2>
           <br />
@@ -39,7 +39,7 @@ export default function Login({ state }) {
     );
   } else {
     return (
-      <div className="max-w-[1240px] mx-auto pt-[200px] h-full px-10 pb-96">
+      <div className="max-w-[1240px] pt-[200px] h-full px-10 pb-96">
         <div className="h-full">
           <h2>User not allowed</h2>
         </div>

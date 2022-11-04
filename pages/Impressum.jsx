@@ -2,7 +2,7 @@ import React from "react";
 
 const Impressum = () => {
   return (
-    <div className="max-w-[1240px] mx-auto pt-[200px] h-[527px] px-10">
+    <div className="max-w-[1240px] pb-20 pt-[200px] px-10">
       <div className="h-full">
         <h2>Impressum</h2>
         <br />

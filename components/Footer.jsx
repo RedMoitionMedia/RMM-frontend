@@ -61,7 +61,7 @@ function Footer() {
 
   return (
     <div
-      className="w-full
+      className="w-full pt-auto
       "
       style={{
         boxShadow: "0px -20px 20px 5px rgba(1, 1, 1, 0.03)",
