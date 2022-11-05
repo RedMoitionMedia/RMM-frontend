@@ -19,11 +19,11 @@ function Services() {
         <div className='flex flex-col justify-between gap-8'>
           <ServiceItem
             backgroundImg={MarketingImg}
-            typeText="Sozial <span style='color:#e92c2c'>media</span> marketing"
+            typeText="Digital <span style='color:#e92c2c'>marketing</span>"
             side='rigth'
             section1='Marketing that actually works.'
-            section2='From marketing on a wide variety of social media management systems to improving your profit.'
-            section3='Besides Facebook Marketing, we also can market your product or business on SnapChat, Tinder, Pinterest and TikTok.'
+            section2='Marketing on a wide variety of social media management systems to increase your revenue.'
+            section3='Besides Facebook Marketing, we can also market your product or business such as SnapChat, Tinder, Pinterest and TikTok.'
           />
           <ServiceItem
             backgroundImg={WebdesignImg}
@@ -37,7 +37,7 @@ function Services() {
             side='rigth'
             section1='Need new pictures of your Product or new content on sozial media? We got you.'
             section2={
-              'Besides that we can also help you by your production or we can make your own comercal.'
+              'Besides, we can also help you with your production videos or help you run your own commercial.'
             }
           />
         </div>

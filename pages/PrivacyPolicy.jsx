@@ -1,25 +1,25 @@
-import Image from "next/image";
-import React, { useState } from "react";
-import carImg from "../public/assets/pics/privacypolicy.jpg";
+import Image from 'next/image';
+import React, { useState } from 'react';
+import carImg from '../public/assets/pics/privacypolicy.jpg';
 
 const PrivacyPolicy = () => {
   return (
     <div>
-      <div className="w-full h-[50vh] relative">
-        <div className="absolute top-0 left-0 w-full h-[50vh] bg-black/70 z-10" />
+      <div className='w-full h-[50vh] relative'>
+        <div className='absolute top-0 left-0 w-full h-[50vh] bg-black/70 z-10' />
         <Image
-          className="absolute z-1"
-          layout="fill"
-          objectFit="cover"
+          className='absolute z-1'
+          layout='fill'
+          objectFit='cover'
           src={carImg}
-          alt="/"
+          alt='/'
         />
-        <div className="absolute top-[70%] max-w-[1240px] w-full left-[50%] right-[50%] translate-x-[-50%] translate-y-[-50%] text-white z-10">
-          <h1 className="py-2 px-10">Privacy Policy</h1>
+        <div className='absolute top-[70%] max-w-[1240px] w-full left-[50%] right-[50%] translate-x-[-50%] translate-y-[-50%] text-white z-10'>
+          <h1 className='py-2 px-10'>Privacy Policy</h1>
         </div>
       </div>
-      <div className="max-w-[1240px] mx-auto p-2 grid md:grid-cols-5 gap-8 py-8 px-10">
-        <div className="col-span-4">
+      <div className='max-w-[1240px] mx-auto p-2 grid md:grid-cols-5 gap-8 py-8 px-10'>
+        <div className='col-span-4'>
           <p>Last updated: September 29, 2022</p>
           <br />
           <h2>Interpretation and Definitions</h2>
@@ -103,13 +103,13 @@ const PrivacyPolicy = () => {
             <li>
               <p>
                 <strong>Website</strong> refers to RedMotionMedia, accessible
-                from{" "}
+                from{' '}
                 <a
-                  href="https://www.redmotionmedia.at"
-                  rel="external nofollow noreferrer"
-                  target="_blank"
+                  href='https://www.redmotionmedia.com'
+                  rel='external nofollow noreferrer'
+                  target='_blank'
                 >
-                  https://www.redmotionmedia.at
+                  https://www.redmotionmedia.com
                 </a>
               </p>
             </li>
@@ -206,14 +206,14 @@ const PrivacyPolicy = () => {
             Cookies. Persistent Cookies remain on Your personal computer or
             mobile device when You go offline, while Session Cookies are deleted
             as soon as You close Your web browser. Learn more about cookies on
-            the{" "}
+            the{' '}
             <a
-              href="https://www.freeprivacypolicy.com/blog/sample-privacy-policy-template/#Use_Of_Cookies_And_Tracking"
-              target="_blank"
-              rel="noreferrer"
+              href='https://www.freeprivacypolicy.com/blog/sample-privacy-policy-template/#Use_Of_Cookies_And_Tracking'
+              target='_blank'
+              rel='noreferrer'
             >
               Free Privacy Policy website
-            </a>{" "}
+            </a>{' '}
             article.
           </p>
           <p>
@@ -567,25 +567,25 @@ const PrivacyPolicy = () => {
           <ul>
             <li>
               <p>
-                By email:{" "}
+                By email:{' '}
                 <a
-                  href="mailto:office@redmotionmedia.at"
-                  className="hover:border-b-2 hover:mb-[-2px]"
+                  href='mailto:office@redmotionmedia.com'
+                  className='hover:border-b-2 hover:mb-[-2px]'
                 >
-                  office@redmotionmedia.at
+                  office@redmotionmedia.com
                 </a>
               </p>
             </li>
             <li>
               <p>
-                By visiting this page on our website:{" "}
+                By visiting this page on our website:{' '}
                 <a
-                  href="https://www.redmotionmedia.at/#contact"
-                  rel="external nofollow noreferrer"
-                  target="_blank"
-                  className="hover:border-b-2 hover:mb-[-2px]"
+                  href='https://www.redmotionmedia.com/#contact'
+                  rel='external nofollow noreferrer'
+                  target='_blank'
+                  className='hover:border-b-2 hover:mb-[-2px]'
                 >
-                  https://www.redmotionmedia.at/#contact
+                  https://www.redmotionmedia.com/#contact
                 </a>
               </p>
             </li>

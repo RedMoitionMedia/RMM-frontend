@@ -1,13 +1,16 @@
-import Image from "next/image";
-import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import { AiOutlineClose, AiOutlineMenu, AiOutlineMail } from "react-icons/ai";
-import { FaGithub, FaInstagram, FaLinkedinIn, FaTiktok } from "react-icons/fa";
-import { BsFillPersonLinesFill } from "react-icons/bs";
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
+import { AiOutlineClose, AiOutlineMenu, AiOutlineMail } from 'react-icons/ai';
+import { FaGithub, FaInstagram, FaLinkedinIn, FaTiktok } from 'react-icons/fa';
+import { BsFillPersonLinesFill } from 'react-icons/bs';
+import { useSession, signOut, getSession } from 'next-auth/react';
 
-import NavLogoImg from "../public/assets/navLogo.png";
+import NavLogoImg from '../public/assets/navLogo.png';
 
 const Navbar = () => {
+  const { data: session, status } = useSession();
+  console.log(session);
   const [nav, setNav] = useState(false);
   const [shadow, setShadow] = useState(false);
 
@@ -15,7 +18,7 @@ const Navbar = () => {
     setNav(!nav);
   };
 
-  const [clientWindowHeight, setClientWindowHeight] = useState("");
+  const [clientWindowHeight, setClientWindowHeight] = useState('');
 
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY);
@@ -42,8 +45,8 @@ const Navbar = () => {
   }, [clientWindowHeight]);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   });
 
   useEffect(() => {
@@ -54,11 +57,11 @@ const Navbar = () => {
         setShadow(false);
       }
     };
-    window.addEventListener("scroll", handleShadow);
+    window.addEventListener('scroll', handleShadow);
   }, []);
 
   const onMouseClick = (e) => {
-    if (e.target.id == "dropout") {
+    if (e.target.id == 'dropout') {
       setNav(false);
     }
   };
@@ -78,165 +81,201 @@ const Navbar = () => {
           boxShadow: `rgb(0 0 0 / ${boxShadow}) 0px 0px 20px 6px`,
         }}
       >
-        <div className="flex justify-between items-center w-full h-full px-2 2xl:px-16 cursor-pointer">
-          <Link href="/">
-            <Image src={NavLogoImg} alt="/" width="175" height="70" />
+        <div className='flex justify-between items-center w-full h-full px-2 2xl:px-16 cursor-pointer'>
+          <Link href='/'>
+            <Image
+              src={NavLogoImg}
+              alt='/'
+              width='175'
+              height='70'
+            />
           </Link>
           <div>
-            <ul className="hidden md:flex">
-              <Link href="/">
-                <li className="ml-10 text-sm uppercase hover:border-b">Home</li>
+            <ul className='hidden md:flex'>
+              <Link href='/'>
+                <li className='ml-10 text-sm uppercase hover:border-b'>Home</li>
               </Link>
-              <Link href="/#about">
-                <li className="ml-10 text-sm uppercase hover:border-b">
+              <Link href='/#about'>
+                <li className='ml-10 text-sm uppercase hover:border-b'>
                   About
                 </li>
               </Link>
-              <Link href="/#services">
-                <li className="ml-10 text-sm uppercase hover:border-b">
+              <Link href='/#services'>
+                <li className='ml-10 text-sm uppercase hover:border-b'>
                   Services
                 </li>
               </Link>
-              <Link href="/#projects">
-                <li className="ml-10 text-sm uppercase hover:border-b">
+              <Link href='/#projects'>
+                <li className='ml-10 text-sm uppercase hover:border-b'>
                   Projects
                 </li>
               </Link>
-              <Link href="/#contact">
-                <li className="ml-10 text-sm uppercase hover:border-b">
+              <Link href='/#contact'>
+                <li className='ml-10 text-sm uppercase hover:border-b'>
                   Contact
                 </li>
               </Link>
-              <Link href="/Account">
-                <li className="ml-10 text-sm uppercase hover:border-b">
+              <Link href='/Account'>
+                <li className='ml-10 text-sm uppercase hover:border-b'>
                   Account
                 </li>
               </Link>
-              <Link href="/Cloud">
-                <li className="ml-10 text-sm uppercase hover:border-b">
+              <Link href='/Cloud'>
+                <li
+                  id='cloudLink'
+                  className={
+                    status === 'authenticated'
+                      ? 'cloudLink ml-10 text-sm uppercase hover:border-b'
+                      : 'cloudLink ml-10 text-sm uppercase hover:border-b hidden'
+                  }
+                >
                   Cloud
                 </li>
               </Link>
             </ul>
-            <div onClick={handleNav} className="cursor-pointer md:hidden">
+            <div
+              onClick={handleNav}
+              className='cursor-pointer md:hidden'
+            >
               <AiOutlineMenu size={25} />
             </div>
           </div>
         </div>
 
         <div
-          id="dropout"
+          id='dropout'
           onMouseDown={onMouseClick}
           onTouchStart={onMouseClick}
           className={
             nav
-              ? "md:hidden fixed left-0 top-0 w-full h-screen bg-black/70"
-              : ""
+              ? 'md:hidden fixed left-0 top-0 w-full h-screen bg-black/70'
+              : ''
           }
         >
           <div
-            id="dropin"
+            id='dropin'
             className={
               nav
-                ? "fixed h-screen left-0 top-0 w-[75%] sm:w-[60%] md:w-[45%] bg-[#313131] p-5 ease-in duration-500 py-4 flex flex-col"
-                : "fixed h-screen left-[-100%] top-0 w-[75%] sm:w-[60%] md:w-[45%] bg-[#313131] p-5 ease-in duration-500 py-4 flex flex-col" //"fixed left-[-100%] top-0 p-5 ease-in duration-500"
+                ? 'fixed h-screen left-0 top-0 w-[75%] sm:w-[60%] md:w-[45%] bg-[#313131] p-5 ease-in duration-500 py-4 flex flex-col'
+                : 'fixed h-screen left-[-100%] top-0 w-[75%] sm:w-[60%] md:w-[45%] bg-[#313131] p-5 ease-in duration-500 py-4 flex flex-col' //"fixed left-[-100%] top-0 p-5 ease-in duration-500"
             }
           >
             <div>
-              <div className="flex w-full items-center justify-between">
-                <Link href="/">
+              <div className='flex w-full items-center justify-between'>
+                <Link href='/'>
                   <Image
                     onClick={() => setNav(false)}
                     src={NavLogoImg}
-                    width="175"
-                    height="70"
-                    alt="/"
+                    width='175'
+                    height='70'
+                    alt='/'
                   />
                 </Link>
                 <div
                   onClick={handleNav}
-                  className="rounded-full shadow-lg p-3 cursor-pointer"
+                  className='rounded-full shadow-lg p-3 cursor-pointer'
                 >
                   <AiOutlineClose />
                 </div>
               </div>
-              <div className="border-b border-gray-300 my-4">
-                <p className="w-[85%] md:w-[90%] py-4">
+              <div className='border-b border-gray-300 my-4'>
+                <p className='w-[85%] md:w-[90%] py-4'>
                   Let&apos;s inspire people
                 </p>
               </div>
             </div>
             <div>
-              <ul className="uppercase">
-                <Link href="/">
-                  <li onClick={() => setNav(false)} className="py-4 text-sm">
+              <ul className='uppercase'>
+                <Link href='/'>
+                  <li
+                    onClick={() => setNav(false)}
+                    className='py-4 text-sm'
+                  >
                     Home
                   </li>
                 </Link>
-                <Link href="/#about">
-                  <li onClick={() => setNav(false)} className="py-4 text-sm">
+                <Link href='/#about'>
+                  <li
+                    onClick={() => setNav(false)}
+                    className='py-4 text-sm'
+                  >
                     About
                   </li>
                 </Link>
-                <Link href="/#services">
-                  <li onClick={() => setNav(false)} className="py-4 text-sm">
+                <Link href='/#services'>
+                  <li
+                    onClick={() => setNav(false)}
+                    className='py-4 text-sm'
+                  >
                     Services
                   </li>
                 </Link>
-                <Link href="/#projects">
-                  <li onClick={() => setNav(false)} className="py-4 text-sm">
+                <Link href='/#projects'>
+                  <li
+                    onClick={() => setNav(false)}
+                    className='py-4 text-sm'
+                  >
                     Projects
                   </li>
                 </Link>
-                <Link href="/#contact">
-                  <li onClick={() => setNav(false)} className="py-4 text-sm">
+                <Link href='/#contact'>
+                  <li
+                    onClick={() => setNav(false)}
+                    className='py-4 text-sm'
+                  >
                     Contact
                   </li>
                 </Link>
-                <Link href="/Account">
-                  <li onClick={() => setNav(false)} className="py-4 text-sm">
+                <Link href='/Account'>
+                  <li
+                    onClick={() => setNav(false)}
+                    className='py-4 text-sm'
+                  >
                     Account
                   </li>
                 </Link>
-                <Link href="/Cloud">
-                  <li onClick={() => setNav(false)} className="py-4 text-sm">
+                <Link href='/Cloud'>
+                  <li
+                    onClick={() => setNav(false)}
+                    className='cloudLink py-4 text-sm hidden'
+                  >
                     Cloud
                   </li>
                 </Link>
               </ul>
             </div>
-            <div className="mt-auto">
-              <p className="uppercase tracking-widest text-[#e92c2c]">
+            <div className='mt-auto'>
+              <p className='uppercase tracking-widest text-[#e92c2c]'>
                 Let&apos;s Connect
               </p>
-              <div className="flex items-center justify-between my-4 w-full sm:w-[80%]">
+              <div className='flex items-center justify-between my-4 w-full sm:w-[80%]'>
                 <a
-                  href="https://www.instagram.com/redryder.at/"
-                  target="_blank"
-                  rel="noreferrer"
+                  href='https://www.instagram.com/redryder.at/'
+                  target='_blank'
+                  rel='noreferrer'
                 >
-                  <div className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300">
+                  <div className='rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300'>
                     <FaInstagram />
                   </div>
                 </a>
                 <a
-                  href="https://www.tiktok.com/@redryder.at?lang=de-DE"
-                  target="_blank"
-                  rel="noreferrer"
+                  href='https://www.tiktok.com/@redryder.at?lang=de-DE'
+                  target='_blank'
+                  rel='noreferrer'
                 >
-                  <div className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300">
+                  <div className='rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300'>
                     <FaTiktok />
                   </div>
                 </a>
-                <a href="mailto:office@redryder.at">
-                  <div className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300">
+                <a href='mailto:office@redryder.at'>
+                  <div className='rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300'>
                     <AiOutlineMail />
                   </div>
                 </a>
-                <Link href="/#contact">
+                <Link href='/#contact'>
                   <div
                     onClick={() => setNav(false)}
-                    className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300"
+                    className='rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300'
                   >
                     <BsFillPersonLinesFill />
                   </div>

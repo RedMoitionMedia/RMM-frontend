@@ -1,35 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { useSession, signIn, signOut, getSession } from "next-auth/react";
-import { FaGoogle } from "react-icons/fa";
-import Router from "next/router";
-import Link from "next/link";
-import Cookies from "cookies";
+import React, { useEffect, useState } from 'react';
+import { useSession, signIn, signOut, getSession } from 'next-auth/react';
+import { FaGoogle } from 'react-icons/fa';
+import Router from 'next/router';
+import Link from 'next/link';
+import Cookies from 'cookies';
 
 export default function Login({ state }) {
   useEffect(() => {
-    if (state != "notSignedIn") {
+    if (state != 'notSignedIn') {
       setTimeout(() => {
         signOut();
       }, 500);
     }
   }, []);
 
-  if (state == "notSignedIn") {
+  if (state == 'notSignedIn') {
     return (
-      <div className="max-w-[1240px] pt-[200px] px-10 pb-20">
-        <div className="h-full">
+      <div className='max-w-[1240px] pt-[200px] px-14'>
+        <div className='h-full'>
           <h2>Login</h2>
           <br />
           <br />
           <button
             className={
-              "flex justify-center items-center gap-3 p-2 text-gray-100 text-base sm:px-10 sm:text-lg cursor-pointer hover:scale-105 ease-in duration-300"
+              'flex justify-center items-center gap-3 p-2 text-gray-100 text-base sm:px-10 sm:text-lg cursor-pointer hover:scale-105 ease-in duration-300'
             }
             onClick={() => {
-              signIn("google");
+              signIn('google');
             }}
           >
-            <div className="rounded-full p-3">
+            <div className='rounded-full p-3'>
               <FaGoogle />
             </div>
             <p>Log in with Google</p>
@@ -39,8 +39,8 @@ export default function Login({ state }) {
     );
   } else {
     return (
-      <div className="max-w-[1240px] pt-[200px] h-full px-10 pb-96">
-        <div className="h-full">
+      <div className='max-w-[1240px] pt-[200px] h-full px-14'>
+        <div className='h-full'>
           <h2>User not allowed</h2>
         </div>
       </div>
@@ -50,7 +50,7 @@ export default function Login({ state }) {
 
 export const getServerSideProps = async (context) => {
   const session = await getSession(context);
-  let state = "notSignedIn";
+  let state = 'notSignedIn';
   if (!session) {
     return {
       props: { state },
@@ -58,24 +58,24 @@ export const getServerSideProps = async (context) => {
   }
   const user = session.user;
   const response = await fetch(
-    "https://redmotionmedia.redryder.at:5002/api/nextcloud/getUserInfos",
+    'https://redmotionmedia.redryder.at:5002/api/nextcloud/getUserInfos',
     {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(user),
     }
   );
   const backendUser = await response.json();
   if (!backendUser) {
-    state = "notAllowed";
+    state = 'notAllowed';
     return {
       props: { state },
     };
   }
   const cookies = new Cookies(context.req, context.res);
-  let redirectionPath = "/";
+  let redirectionPath = '/';
 
-  if (cookies.get("redirectionPath")) {
-    redirectionPath = cookies.get("redirectionPath");
+  if (cookies.get('redirectionPath')) {
+    redirectionPath = cookies.get('redirectionPath');
   }
   return {
     redirect: {
