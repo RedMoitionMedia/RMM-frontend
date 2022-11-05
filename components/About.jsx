@@ -9,9 +9,9 @@ function About() {
   return (
     <div
       id='about'
-      className='w-full md:h-screen p-2 flex items-center overflow-x-hidden px-14'
+      className='w-full md:h-screen p-2 flex items-center overflow-x-hidden '
     >
-      <section className='secHidden2 max-w-[1240px] m-auto md:grid grid-cols-3 gap-8'>
+      <section className='secHidden2 max-w-[1240px] m-auto md:grid grid-cols-3 gap-8 px-14'>
         <div className='col-span-2'>
           <p className='uppercase text-xl tracking-widest text-[#e92c2c]'>
             About
