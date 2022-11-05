@@ -37,7 +37,7 @@ html {
   }
 
   button {
-    @apply shadow-xl shadow-xl rounded-xl uppercase bg-gradient-to-r from-[#dd5e5e] to-[#e92c2c] text-white;
+    @apply shadow-xl rounded-xl uppercase bg-gradient-to-r from-[#dd5e5e] to-[#e92c2c] text-white;
   }
 
   input {
