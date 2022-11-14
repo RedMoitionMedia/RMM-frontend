@@ -7,7 +7,7 @@
 First, install all dependencies:
 
 ```bash
-npm install -force
+npm install --force
 # or
 yarn install
 ```
